@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuantkanovaa_i - Самая прекрасная</title>
+    <style>
+        :root {
+            --main-color: #ff6b9e;
+            --secondary-color: #6b5b95;
+            --light-color: #fff5f7;
+            --dark-color: #3a2e4d;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--light-color);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .heart {
+            color: var(--main-color);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--main-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: "❤";
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin: 20px 0 0;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            padding: 20px;
+        }
+        
+        nav a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--main-color);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--main-color);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--main-color);
+            margin: 15px auto;
+        }
+        
+        /* Улучшенная галерея */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .photo {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            aspect-ratio: 1/1;
+        }
+        
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .photo:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .photo:hover img {
+            transform: scale(1.1);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .photo:hover .photo-caption {
+            transform: translateY(0);
+        }
+        
+        /* Остальные стили без изменений */
+        .qualities {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .quality-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .quality-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .quality-icon {
+            font-size: 2.5rem;
+            color: var(--main-color);
+            margin-bottom: 15px;
+        }
+        
+        .memory {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .memory img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        
+        .memory-text {
+            flex-grow: 1;
+        }
+        
+        .memory-date {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--secondary-color), var(--dark-color));
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+        
+        .heart-btn {
+            background-color: var(--main-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 30px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .heart-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 107, 158, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .memory {
+                flex-direction: column;
+            }
+            
+            .memory img {
+                width: 100%;
+                height: auto;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+            }
+            
+            nav li {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Kuantkanovaa_i</h1>
+        <p class="subtitle">Самая прекрасная девушка на свете <span class="heart">❤</span></p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">О ней</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#qualities">Качества</a></li>
+            <li><a href="#memories">Воспоминания</a></li>
+            <li><a href="#poem">Стихи</a></li>
+        </ul>
+    </nav>
+    
+    <section id="about">
+        <h2 class="section-title">Немного о ней</h2>
+        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <p style="font-size: 1.1rem;">Здесь ты можешь написать небольшое введение о девушке, которая тебе нравится. Опиши, как вы познакомились, что тебя в ней привлекает, какие у нее увлечения и мечты.</p>
+            <p style="font-size: 1.1rem; margin-top: 20px;">Этот сайт - твоя возможность выразить свои чувства и показать, как много она для тебя значит.</p>
+            <a href="#memories" class="heart-btn"><i class="fas fa-heart"></i> Наши моменты</a>
+        </div>
+    </section>
+    
+    <section id="gallery" style="background-color: #fafafa;">
+        <h2 class="section-title">Фотогалерея</h2>
+        <p style="text-align: center;">Самые красивые и памятные фотографии</p>
+        
+        <div class="photo-gallery">
+            <div class="photo">
+                <img src="001.jpg" alt="Kuantkanovaa_i" loading="lazy">
+                <div class="photo-caption">Моя любимая</div>
+            </div>
+            <div class="photo">
+                <img src="002.jpg" alt="Kuantkanovaa_i" loading="lazy">
+                <div class="photo-caption">Прекрасный момент</div>
+            </div>
+            <div class="photo">
+                <img src="003.jpg" alt="Kuantkanovaa_i" loading="lazy">
+                <div class="photo-caption">Незабываемые эмоции</div>
+            </div>
+            <div class="photo">
+                <img src="004.jpg" alt="Kuantkanovaa_i" loading="lazy">
+                <div class="photo-caption">Счастье</div>
+            </div>
+            <div class="photo">
+                <img src="005.jpg" alt="Kuantkanovaa_i" loading="lazy">
+                <div class="photo-caption">Улыбка</div>
+            </div>
+            <div class="photo">
+                <img src="006.jpg" alt="Kuantkanovaa_i" loading="lazy">
+                <div class="photo-caption">Любимые глаза</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="qualities">
+        <h2 class="section-title">Что делает ее особенной</h2>
+        <p style="text-align: center;">Все причины, почему она такая удивительная</p>
+        
+        <div class="qualities">
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-smile"></i>
+                </div>
+                <h3>Улыбка</h3>
+                <p>Ее улыбка освещает весь мир</p>
+            </div>
+            
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Ум</h3>
+                <p>Невероятно умна и сообразительна</p>
+            </div>
+            
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Доброта</h3>
+                <p>Сердце полное тепла и заботы</p>
+            </div>
+            
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-laugh"></i>
+                </div>
+                <h3>Чувство юмора</h3>
+                <p>Умеет поднять настроение</p>
+            </div>
+            
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Таланты</h3>
+                <p>Множество удивительных способностей</p>
+            </div>
+            
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h3>Обаяние</h3>
+                <p>Притягивает людей, как магнит</p>
+            </div>
+        </div>
+    </section>
+    
+        
+    <section id="poem">
+        <h2 class="section-title">Стихи для нее</h2>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <div style="background-color: white; border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px;">
+                <h3 style="color: var(--secondary-color);">Название стихотворения</h3>
+                <p style="font-style: italic; line-height: 1.8;">
+                    Ты - как утренний свет,<br>
+                    Как весенний рассвет,<br>
+                    Ты - мечта и отрада,<br>
+                    Ты - моя услада.<br><br>
+                    
+                    В твоих глазах - целый мир,<br>
+                    В них и радость, и пир,<br>
+                    В них любовь без границ,<br>
+                    В них счастливых страниц.
+                </p>
+            </div>
+            
+            <a href="#" class="heart-btn"><i class="fas fa-pen-fancy"></i> Написать свое</a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>Создано с <i class="fas fa-heart" style="color: #ff6b9e;"></i> специально для Kuantkanovaa_i</p>
+        <p>© 2023 Все права защищены</p>
+    </footer>
+
+    <!-- Добавляем музыкальный плеер -->
+    <div class="music-player">
+        <audio id="bgMusic" loop>
+            <source src="music/special-song.mp3" type="audio/mpeg">
+            Ваш браузер не поддерживает аудио элемент.
+        </audio>
+        <div class="player-controls">
+            <button id="playBtn" class="music-btn"><i class="fas fa-play"></i></button>
+            <button id="muteBtn" class="music-btn"><i class="fas fa-volume-up"></i></button>
+            <span id="songTitle">Наша песня</span>
+        </div>
+    </div>
+
+    <style>
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            border: 2px solid var(--main-color);
+            transition: transform 0.3s;
+        }
+        
+        .music-btn {
+            background: var(--main-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        #songTitle {
+            font-weight: bold;
+            color: var(--dark-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+    </style>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+        const playBtn = document.getElementById('playBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        const songTitle = document.getElementById('songTitle');
+        let isPlaying = false;
+        
+        // Автовоспроизведение при первом клике
+        document.addEventListener('click', function initPlay() {
+            music.play().then(() => {
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                isPlaying = true;
+            }).catch(e => console.log("Автовоспроизведение заблокировано"));
+            document.removeEventListener('click', initPlay);
+        }, { once: true });
+        
+        playBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                music.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                music.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        muteBtn.addEventListener('click', function() {
+            if (music.muted) {
+                music.muted = false;
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                music.muted = true;
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
